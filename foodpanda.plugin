@@ -9,6 +9,6 @@ DOMAIN-SUFFIX,dh-adtech.net,REJECT
 DOMAIN,at-display-as.deliveryhero.io,REJECT
 DOMAIN-SUFFIX,display-cdn.dh-adtech.net,REJECT
 [Script]
-http-response ^https:\/\/hk\.fd-api\.com\/graphql script-path=https://raw.githubusercontent.com/xingjiu29/foodpanda/refs/heads/main/foodpanda.js?v=2, requires-body=true, timeout=30
+http-response ^https:\/\/hk\.fd-api\.com\/graphql script-path=https://raw.githubusercontent.com/xingjiu29/foodpanda/refs/heads/main/foodpanda.js?v=3, requires-body=true, timeout=30
 [MitM]
 hostname = %APPEND% hk.fd-api.com, static.fd-api.com, global.fd-api.com, localization.fd-api.com, *.fd-api.com
