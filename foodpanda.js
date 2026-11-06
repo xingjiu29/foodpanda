@@ -1,6 +1,6 @@
 const url = $request.url;
 const body = $response.body;
-const DROP_SWIMLANE = /past_order|new-restaurants|meal_for_one|lowest_delivery|top_chain|deals_multi_vendors|fresh-grocery|discounts_deals|pro_deals|deals_and_new_vendors|popular_shops|sponsored_vendors|popular_restaurants/;
+const DROP_SWIMLANE = /past_order|new-restaurants|meal_for_one|lowest_delivery|top_chain|deals_multi_vendors|fresh-grocery|discounts_deals|pro_deals|deals_and_new_vendors|popular_shops|sponsored_vendors|popular_restaurants|daily_essentials|featured-restaurants|popular-qc-vendor|^auto-product-/;
 const KEEP_FE = ["FILTERS"];
 function isDrop(c) {
   const t = c.__typename;
