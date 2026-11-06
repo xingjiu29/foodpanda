@@ -1,0 +1,9 @@
+#!name=foodpanda去广告
+#!desc=去掉首页横幅/再次訂購/觀看精選/快閃優惠/人氣品牌/人氣餐廳/最低運費/一人餐/不如試新嘢 以及搜索页人氣品牌与熱門搜尋
+#!author=杏九
+#!loon_version = 3.5.3(1014)
+#!tag=去广告
+[Script]
+http-response ^https:\/\/hk\.fd-api\.com\/graphql script-path=https://raw.githubusercontent.com/xingjiu29/foodpanda/refs/heads/main/foodpanda.js?v=1, requires-body=true, timeout=30
+[MitM]
+hostname = %APPEND% hk.fd-api.com
