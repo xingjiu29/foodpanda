@@ -1,6 +1,8 @@
 const url = $request.url;
 const body = $response.body;
-const DROP_SWIMLANE = /past_order|new-restaurants|meal_for_one|low_delivery|lowest_delivery|top_chain|deals_multi_vendors|deals_near_you|fresh-grocery|discounts_deals|pro_deals|deals_and_new_vendors|popular_shops|sponsored_vendors|popular_restaurants|daily_essentials|featured-restaurants|popular-qc-vendor|^auto-product-|NEW_TO_QC|nested_product|pandadeal|lobang|time_?based/;
+const DROP_SWIMLANE = /past_order|new-restaurants|meal_for_one|low_delivery|lowest_delivery|top_chain|deals_multi_vendors|deals_near_you|fresh-grocery|discounts_deals|pro_deals|deals_and_new_vendors|popular_shops|sponsored_vendors|popular_restaurants|daily_essentials|featured-restaurants|popular-qc-vendor|^auto-product-|NEW_TO_QC|nested_product|pandadeal|lobang|time_?based|local_heroes|_campaign|drinks/;
+const KEEP_SWIMLANE = /^(category-|auto-restaurant-group)/;
+const DROP_SWIMLANE_PREFIX = /^(manual-vendor|auto-|custom-|product-|central-|vendor-)/;
 const KEEP_FE = ["FILTERS"];
 function isDrop(c) {
   const t = c.__typename;
@@ -9,7 +11,12 @@ function isDrop(c) {
     return KEEP_FE.indexOf(String(c.type)) < 0;
   }
   if (t === "PopularSearchesComponent") return true;
-  if (t === "SwimlaneComponent") return DROP_SWIMLANE.test(String(c.id || ""));
+  if (t === "SwimlaneComponent") {
+    const id = String(c.id || "");
+    if (KEEP_SWIMLANE.test(id)) return false;
+    if (DROP_SWIMLANE.test(id)) return true;
+    return DROP_SWIMLANE_PREFIX.test(id);
+  }
   return false;
 }
 let removed = 0;
